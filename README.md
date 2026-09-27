@@ -86,8 +86,25 @@ Everything on the bar can be clicked:
 The **dock** at the bottom opens the terminal, files, Firefox, YouTube, Spotify, WhatsApp
 and Telegram, plus the appearance settings.
 
+## ✦ A look around
+
+<table>
+<tr>
+<td width="50%"><img src="screenshots/launcher.jpg" alt="App launcher panel"><br><sub>Your apps: <b>Super + A</b> or the sigil on the left</sub></td>
+<td width="50%"><img src="screenshots/keybinds.jpg" alt="Keyboard shortcut list"><br><sub>Every shortcut: <b>Super + /</b></sub></td>
+</tr>
+<tr>
+<td width="50%"><img src="screenshots/system.jpg" alt="Quick settings panel"><br><sub>Quick settings: click the battery</sub></td>
+<td width="50%"><img src="screenshots/calendar.jpg" alt="Calendar panel"><br><sub>Calendar: click the clock</sub></td>
+</tr>
+<tr>
+<td width="50%"><img src="screenshots/power.jpg" alt="Power menu"><br><sub>Power menu: click ⏻ on the far right</sub></td>
+<td width="50%"><img src="screenshots/wallpicker.jpg" alt="Wallpaper picker"><br><sub>Wallpaper picker: <b>Super + Shift + W</b></sub></td>
+</tr>
+</table>
+
 <p align="center"><img src="screenshots/terminal.jpg" alt="A terminal window showing system info in the purple theme" width="100%"><br>
-<sub>The terminal (<b>Super + T</b>)</sub></p>
+<sub>The terminal: <b>Super + T</b></sub></p>
 
 ## ✦ Wallpapers
 
