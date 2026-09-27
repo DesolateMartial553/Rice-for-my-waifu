@@ -4,17 +4,17 @@
 
 ### Akira's Wang Lin desktop
 
-*A purple Renegade Immortal theme for Arch Linux, made for Akira* ♡
+*A purple Renegade Immortal theme for Arch Linux, made for My princess * ♡
 
 </div>
 
 ---
 
-Hi Akira! This turns your Arch Linux into a dark purple desktop inspired by Wang Lin
-from *Renegade Immortal*: a top bar, a dock, an app launcher, a lock screen, wallpapers,
+Hey princess, so after i finished stage 2 of building my product i decided to just start on building ur rice for  i hope u enjoy it...
+its got a top bar, a dock, an app launcher, a lock screen, wallpapers,
 and matching colours in your apps.
 
-You don't need to know Linux to set it up. The installer explains every step and asks
+I made it so u dont need to do much in the installation process. The installer explains every step and asks
 before it does anything. This page covers everything else.
 
 ## ✦ Installing it
@@ -23,7 +23,7 @@ before it does anything. This page covers everything else.
 internet. (No Wi-Fi yet? Type `nmtui`, press Enter and pick your network.)
 
 1. **Open a terminal.** On a fresh Arch install, that's just the text screen you log in to.
-2. **Copy this line, paste it in and press Enter:**
+2. **Copy this line, paste it in and press Enter(copy the lines in the bracket):**
 
    ```sh
    bash <(curl -fsSL https://raw.githubusercontent.com/DesolateMartial553/Rice-for-my-waifu/main/get.sh)
