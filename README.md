@@ -4,7 +4,9 @@
 
 ### Akira's Wang Lin desktop
 
-*A purple Renegade Immortal theme for Arch Linux, made for My princess * ♡
+*A purple Renegade Immortal theme for Arch Linux, made for Akira, my princess* ♡
+
+<img src="screenshots/desktop.jpg" alt="The Wang Lin desktop: purple wallpaper, top bar, dock and widgets" width="100%">
 
 </div>
 
@@ -23,7 +25,7 @@ before it does anything. This page covers everything else.
 internet. (No Wi-Fi yet? Type `nmtui`, press Enter and pick your network.)
 
 1. **Open a terminal.** On a fresh Arch install, that's just the text screen you log in to.
-2. **Copy this line, paste it in and press Enter(copy the lines in the bracket):**
+2. **Copy this line, paste it in and press Enter** (copy the whole line in the grey box below):
 
    ```sh
    bash <(curl -fsSL https://raw.githubusercontent.com/DesolateMartial553/Rice-for-my-waifu/main/get.sh)
@@ -83,6 +85,9 @@ Everything on the bar can be clicked:
 
 The **dock** at the bottom opens the terminal, files, Firefox, YouTube, Spotify, WhatsApp
 and Telegram, plus the appearance settings.
+
+<p align="center"><img src="screenshots/terminal.jpg" alt="A terminal window showing system info in the purple theme" width="100%"><br>
+<sub>The terminal (<b>Super + T</b>)</sub></p>
 
 ## ✦ Wallpapers
 
