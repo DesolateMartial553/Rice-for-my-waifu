@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Cheat sheet generated live from `hyprctl binds -j` descriptions.
+pkill -x rofi && exit 0
+hyprctl binds -j | jq -r '
+  def mods: [ (if (.modmask/64|floor)%2==1 then "SUPER" else empty end),
+              (if (.modmask/1|floor)%2==1 then "SHIFT" else empty end),
+              (if (.modmask/4|floor)%2==1 then "CTRL"  else empty end),
+              (if (.modmask/8|floor)%2==1 then "ALT"   else empty end) ];
+  .[] | select(.description != "")
+      | "\((mods + [.key]) | join(" + ") | ascii_upcase)\t\(.description)"' |
+  awk -F'\t' '!seen[$2 FS $1]++ { printf "%-26s  %s\n", $1, $2 }' |
+  rofi -dmenu -i -p "$(printf '\uf11c')  keybinds" -theme-str 'window { width: 720px; } listview { lines: 14; }' >/dev/null

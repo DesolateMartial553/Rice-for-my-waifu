@@ -1,0 +1,66 @@
+{
+  "logo": {
+    "source": "arch_small",
+    "color": {
+      "1": "#ab65e5",
+      "2": "#c497ee"
+    },
+    "padding": {
+      "top": 1,
+      "right": 3
+    }
+  },
+  "display": {
+    "separator": "  :  ",
+    "color": {
+      "keys": "#ab65e5",
+      "title": "#ab65e5"
+    }
+  },
+  "modules": [
+    "title",
+    "separator",
+    {
+      "type": "os",
+      "format": "{name}",
+      "key": "OS      "
+    },
+    {
+      "type": "wm",
+      "key": "WM      ",
+      "format": "{pretty-name}"
+    },
+    {
+      "type": "custom",
+      "key": "Theme   ",
+      "format": "WangLin-Purple"
+    },
+    {
+      "type": "custom",
+      "key": "Icons   ",
+      "format": "Tela Purple"
+    },
+    {
+      "type": "terminal",
+      "key": "Terminal"
+    },
+    {
+      "type": "shell",
+      "key": "Shell   "
+    },
+    {
+      "type": "kernel",
+      "key": "Kernel  "
+    },
+    {
+      "type": "uptime",
+      "key": "Uptime  "
+    },
+    {
+      "type": "packages",
+      "key": "Packages"
+    },
+    "break",
+    "colors"
+  ]
+}

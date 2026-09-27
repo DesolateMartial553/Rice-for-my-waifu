@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+set -euo pipefail
+state="$HOME/.local/state/wanglin-rice"
+backup="$state/reference-backup-20260927-143714"
+[[ -d "$backup/wanglin-rice" ]] || { echo "Reference backup is missing" >&2; exit 1; }
+if [[ -f "$state/desktop.lock" ]]; then
+    read -r pid < "$state/desktop.lock" || true
+    if [[ ${pid:-} =~ ^[0-9]+$ ]] && [[ -r /proc/$pid/cmdline ]] && grep -zFq '/desktop/shell.py' "/proc/$pid/cmdline"; then
+        kill -TERM "$pid" || true
+    fi
+fi
+python - "$backup" <<'PY'
+from pathlib import Path
+import datetime, shutil, sys
+h=Path.home(); backup=Path(sys.argv[1])
+saved=h/'.local/state/wanglin-rice'/('before-reference-restore-'+datetime.datetime.now().strftime('%Y%m%d-%H%M%S'))
+saved.mkdir(parents=True)
+shutil.copytree(h/'wanglin-rice',saved/'wanglin-rice',symlinks=True)
+shutil.copy2(h/'.bashrc',saved/'.bashrc')
+shutil.copytree(backup/'wanglin-rice',h/'wanglin-rice',dirs_exist_ok=True,symlinks=True)
+shutil.copy2(backup/'.bashrc',h/'.bashrc')
+# Preserve the generated asset while restoring the previous wallpaper choice.
+wall=h/'wanglin-rice/wallpapers/wallpaper.png'
+if wall.exists():
+    retained=h/'wanglin-rice/wallpapers/reference-reconstructed.png'
+    wall.rename(retained)
+    link=h/'Pictures/Wallpapers/Wang-Lin.png'
+    if link.is_symlink():
+        link.unlink()
+        link.symlink_to(retained)
+print('Previous rice restored; current configuration saved to',saved)
+PY
+hyprctl reload
+"$HOME/wanglin-rice/scripts/wallpaper"
+exec "$HOME/wanglin-rice/scripts/bar" restart

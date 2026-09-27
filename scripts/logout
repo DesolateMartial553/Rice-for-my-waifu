@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Graceful logout: uwsm stop if uwsm-managed (per Hyprland wiki), else hyprshutdown/exit.
+if command -v uwsm >/dev/null 2>&1 && uwsm check is-active >/dev/null 2>&1; then
+    exec uwsm stop
+elif command -v hyprshutdown >/dev/null 2>&1; then
+    exec hyprshutdown
+else
+    exec hyprctl dispatch 'hl.dsp.exit()'
+fi

@@ -1,0 +1,87 @@
+/* 王林 · Wang Lin — drop-down panels opened from Waybar. Same palette as the bar. */
+* { font-family: "GoogleSansCode Nerd Font Propo", "Noto Sans CJK SC", sans-serif; font-size: 12px; color: #c9bddc; box-shadow: none; text-shadow: none; -gtk-icon-shadow: none; }
+window { background: transparent; }
+
+.panel {
+    background: rgba(15,12,23,0.96);
+    border: 1px solid rgba(184,138,245,0.42);
+    border-radius: 12px;
+    padding: 14px;
+    margin: 6px 8px 18px 8px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.55), inset 0 1px rgba(212,178,251,0.10);
+}
+
+/* Header: icon · title · 汉字 */
+.header { padding-bottom: 10px; margin-bottom: 4px; border-bottom: 1px solid rgba(164,132,203,0.22); }
+.header-icon { color: #c7aceb; font-size: 18px; }
+.header-title { color: #f2ecfa; font-weight: bold; font-size: 13px; letter-spacing: 1px; }
+.header-han { color: #8b77a6; font-size: 13px; letter-spacing: 3px; }
+.section { color: #8b77a6; font-size: 10px; font-weight: bold; letter-spacing: 2px; margin-top: 8px; }
+.muted { color: #91829f; font-size: 11px; }
+.big { color: #f2ecfa; font-size: 30px; font-weight: bold; }
+.accent { color: #c7aceb; }
+.warn { color: #f0799b; }
+.good { color: #9bd9b4; }
+
+/* Buttons */
+button { background: transparent; background-image: none; border: 1px solid transparent; border-radius: 8px; padding: 6px 8px; min-height: 0; min-width: 0; outline: none; }
+button:hover { background: rgba(184,138,245,0.16); }
+button:focus { border-color: rgba(184,138,245,0.55); }
+button:disabled { opacity: 0.4; }
+.chip { background: #1a1226; border-color: rgba(184,138,245,0.16); }
+.chip:hover { background: #251538; border-color: rgba(184,138,245,0.6); }
+.chip.on, button.on { background: linear-gradient(#aa71df, #8652bc); border-color: #d4b2fb; }
+.chip.on label, button.on label { color: #eee1ff; }
+.danger { border-color: #f0799b; background: rgba(240,121,155,0.14); }
+.danger label { color: #f0799b; }
+.row { padding: 7px 9px; }
+.row.current { background: rgba(184,138,245,0.12); border-color: rgba(184,138,245,0.35); }
+.icon { font-size: 16px; color: #c7aceb; }
+.key { background: #251538; border: 1px solid rgba(184,138,245,0.35); border-bottom-width: 2px; border-radius: 5px; padding: 1px 6px; color: #eee1ff; font-size: 10px; font-weight: bold; }
+.hint { color: #6f6283; font-size: 10px; }
+
+/* Entry */
+entry { background: #1a1226; border: none; border-bottom: 2px solid #b88af5; border-radius: 8px; padding: 8px 10px; color: #f2ecfa; caret-color: #b88af5; }
+entry image { color: #b88af5; }
+entry selection { background: rgba(184,138,245,0.35); }
+
+/* Sliders */
+scale { padding: 6px 0; }
+scale trough { min-height: 5px; background: #3a2656; border: none; border-radius: 3px; }
+scale highlight { background: linear-gradient(to right, #8652bc, #b88af5); border: none; border-radius: 3px; }
+scale slider { min-width: 14px; min-height: 14px; margin: -5px; background: #eee1ff; border: 2px solid #b88af5; border-radius: 50%; }
+scale slider:hover { background: #ffffff; }
+
+/* Switch */
+switch { background: #3a2656; border: none; border-radius: 10px; min-width: 38px; min-height: 18px; }
+switch:checked { background: linear-gradient(#aa71df, #8652bc); }
+switch slider { background: #eee1ff; border: none; border-radius: 50%; min-width: 16px; min-height: 16px; margin: 1px; }
+switch image { color: transparent; }
+
+/* Lists & grids */
+scrolledwindow, viewport, list, flowbox { background: transparent; border: none; }
+list row { background: transparent; border-radius: 8px; padding: 0; }
+list row:hover, list row:selected { background: rgba(184,138,245,0.14); }
+flowboxchild { border-radius: 10px; padding: 8px 2px; border: 1px solid transparent; }
+flowboxchild:hover { background: rgba(184,138,245,0.12); }
+flowboxchild:selected, flowboxchild:focus { background: rgba(184,138,245,0.20); border-color: rgba(184,138,245,0.55); }
+flowboxchild label { font-size: 11px; color: #c9bddc; }
+scrollbar { background: transparent; border: none; }
+scrollbar slider { background: rgba(184,138,245,0.35); border-radius: 4px; min-width: 4px; border: none; }
+
+/* Calendar */
+.day { min-width: 30px; min-height: 26px; padding: 0; border-radius: 7px; }
+.day label { font-size: 12px; }
+.day.other label { color: #4f445f; }
+.day.weekend label { color: #b3a4c4; }
+.day.today { background: linear-gradient(#aa71df, #8652bc); border-color: #d4b2fb; }
+.day.today label { color: #ffffff; font-weight: bold; }
+.weekday { color: #8b77a6; font-size: 10px; font-weight: bold; }
+
+/* Battery bar */
+progressbar trough { min-height: 6px; background: #3a2656; border: none; border-radius: 3px; }
+progressbar progress { min-height: 6px; background: linear-gradient(to right, #8652bc, #b88af5); border: none; border-radius: 3px; }
+progressbar.low progress { background: #f0799b; }
+
+tooltip { background: #100c19; border: 1px solid #705887; border-radius: 7px; }
+tooltip label { color: #d0c4e0; }

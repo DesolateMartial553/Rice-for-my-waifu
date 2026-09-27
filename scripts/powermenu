@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# wlogout power menu, sized for a 1280x720 logical desktop.
+pkill -x wlogout && exit 0
+exec wlogout -b 5 -T 250 -B 250 -L 120 -R 120 -c 14 -r 14 -s \
+    -l "$HOME/.config/wlogout/layout" -C "$HOME/.config/wlogout/style.css"

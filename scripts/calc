@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Calculator (qalc in rofi). Enter evaluates; picking a result copies it. HyDE: SUPER+SHIFT+K
+pkill -x rofi && exit 0
+hist=()
+while :; do
+    sel=$(printf '%s\n' "${hist[@]}" | rofi -dmenu -p "󰃬  calc" -mesg "Type an expression · Enter: evaluate · pick a result to copy") || exit 0
+    [[ -n $sel ]] || exit 0
+    if [[ $sel == *" = "* ]]; then printf '%s' "${sel##* = }" | wl-copy; exit 0; fi
+    res=$(qalc -t -- "$sel" 2>/dev/null | tail -1)
+    hist=("$sel = $res" "${hist[@]}")
+done

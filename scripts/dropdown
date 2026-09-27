@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Dropdown terminal: a kitty living on special:dropdown. HyDE: SUPER+ALT+T
+source "$(dirname "$(readlink -f "$0")")/lib.sh"
+if ! hyprctl clients -j | jq -e 'any(.[]; .class == "wanglin-dropdown")' >/dev/null; then
+    "$WL_SHARE/scripts/run" kitty --class wanglin-dropdown &
+    for _ in {1..40}; do hyprctl clients -j | jq -e 'any(.[]; .class == "wanglin-dropdown")' >/dev/null && break; sleep 0.05; done
+fi
+hyprctl dispatch 'hl.dsp.workspace.toggle_special("dropdown")' >/dev/null

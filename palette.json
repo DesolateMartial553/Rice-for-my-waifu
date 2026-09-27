@@ -1,0 +1,17 @@
+{
+  "_comment": "Single source of truth. Edit, then run: ./tools/gen-palette.py",
+  "base":     "#100B18",
+  "mantle":   "#0B0712",
+  "surface":  "#1A1226",
+  "deep":     "#251538",
+  "overlay":  "#3A2656",
+  "purple":   "#6E40A1",
+  "lavender": "#B88AF5",
+  "silver":   "#C9C4D4",
+  "muted":    "#9A8FB0",
+  "text":     "#F2ECFA",
+  "red":      "#F0799B",
+  "yellow":   "#E9C98A",
+  "green":    "#9BD9B4",
+  "cyan":     "#8FCFE0"
+}

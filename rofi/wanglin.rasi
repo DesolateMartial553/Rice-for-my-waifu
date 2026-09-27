@@ -1,0 +1,76 @@
+/* 王林 · Wang Lin — rofi theme. Colours: colors.rasi (generated). */
+@import "colors.rasi"
+
+* {
+    font: "GoogleSansCode Nerd Font Propo 11";
+    background-color: transparent;
+    text-color: @text;
+    spacing: 0;
+}
+
+window {
+    width: 520px;
+    location: center;
+    anchor: center;
+    y-offset: -40px;
+    border: 1px;
+    border-color: @purple;
+    border-radius: 14px;
+    background-color: @base-alpha;
+    padding: 0;
+}
+
+mainbox {
+    children: [ "inputbar", "message", "listview", "mode-switcher" ];
+    padding: 14px;
+    spacing: 10px;
+}
+
+inputbar {
+    children: [ "prompt", "entry" ];
+    background-color: @surface;
+    border: 0 0 2px 0;
+    border-color: @lavender;
+    border-radius: 10px;
+    padding: 10px 12px;
+    spacing: 10px;
+}
+prompt { text-color: @lavender; }
+entry  { placeholder: "seek…"; placeholder-color: @muted; cursor: text; }
+
+message   { background-color: @surface; border-radius: 8px; padding: 6px 10px; }
+textbox   { text-color: @muted; }
+
+listview {
+    lines: 7;
+    columns: 1;
+    fixed-height: true;
+    scrollbar: false;
+    spacing: 2px;
+}
+
+element {
+    padding: 7px 10px;
+    border-radius: 8px;
+    spacing: 10px;
+}
+element normal.normal, element alternate.normal { text-color: @silver; }
+element selected.normal {
+    background-color: @lavender-dim;
+    text-color: @text;
+    border: 0 0 0 3px;
+    border-color: @lavender;
+}
+element normal.urgent, element alternate.urgent { text-color: @red; }
+element normal.active, element alternate.active { text-color: @lavender; }
+element-icon { size: 22px; vertical-align: 0.5; }
+element-text { vertical-align: 0.5; text-color: inherit; highlight: bold underline #B88AF5; }
+
+mode-switcher { spacing: 6px; }
+button {
+    padding: 5px;
+    border-radius: 8px;
+    text-color: @muted;
+    background-color: @surface;
+}
+button selected { text-color: @base; background-color: @lavender; }

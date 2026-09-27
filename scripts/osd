@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# Volume / brightness with a swaync progress notification.
+source "$(dirname "$(readlink -f "$0")")/lib.sh"
+show() { notify-send -a "osd" -t 1200 -e -h string:x-canonical-private-synchronous:osd \
+         -h "int:value:$2" -i "$3" "$1" >/dev/null 2>&1; }
+case "$1 $2" in
+    "volume up")   wpctl set-mute @DEFAULT_AUDIO_SINK@ 0; wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+ ;;
+    "volume down") wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- ;;
+    "volume mute") wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle ;;
+    "mic mute")    wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+                   if wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | grep -q MUTED; then
+                       show "Microphone muted" 0 microphone-sensitivity-muted-symbolic
+                   else show "Microphone on" 100 microphone-sensitivity-high-symbolic; fi
+                   exit 0 ;;
+    "brightness up")   brightnessctl -e4 -n2 set 5%+ >/dev/null ;;
+    "brightness down") brightnessctl -e4 -n2 set 5%- >/dev/null ;;
+    *) echo "usage: $0 volume up|down|mute | mic mute | brightness up|down" >&2; exit 2 ;;
+esac
+if [[ "$1" == volume ]]; then
+    v=$(wpctl get-volume @DEFAULT_AUDIO_SINK@)
+    pct=$(awk '{printf "%d", $2*100}' <<<"$v")
+    if grep -q MUTED <<<"$v"; then show "Muted" 0 audio-volume-muted-symbolic
+    else show "Volume ${pct}%" "$pct" audio-volume-high-symbolic; fi
+else
+    pct=$(( $(brightnessctl get) * 100 / $(brightnessctl max) ))
+    show "Brightness ${pct}%" "$pct" display-brightness-symbolic
+fi

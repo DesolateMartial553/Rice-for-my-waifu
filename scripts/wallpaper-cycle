@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# next | prev | select — cycles every wallpaper in wallpapers/ and its subfolders.
+# HyDE: SUPER+ALT+Right / SUPER+ALT+Left / SUPER+SHIFT+W
+source "$(dirname "$(readlink -f "$0")")/lib.sh"
+mapfile -t walls < <(find -L "$WL_WALL" -type f \( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.webp' \) \
+                     ! -name 'wanglin-placeholder.png' | sort)
+((${#walls[@]})) || exit 1
+cur=$(wl_wallpaper); idx=0
+for i in "${!walls[@]}"; do [[ ${walls[$i]} == "$cur" ]] && idx=$i; done
+case ${1:-next} in
+    next) img=${walls[$(( (idx + 1) % ${#walls[@]} ))]} ;;
+    prev) img=${walls[$(( (idx - 1 + ${#walls[@]}) % ${#walls[@]} ))]} ;;
+    select)
+        # Full-screen picker (popups/wallpicker.py); the same key closes it again.
+        pkill -f 'python .*popups/wallpicker\.py' && exit 0
+        exec python "$WL_SHARE/popups/wallpicker.py" 2>>"$WL_STATE/wallpicker.log" ;;
+    *) echo "usage: $0 next|prev|select" >&2; exit 2 ;;
+esac
+exec "$WL_SHARE/scripts/wallpaper" "$img"

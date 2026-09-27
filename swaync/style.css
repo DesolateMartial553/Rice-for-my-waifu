@@ -1,0 +1,80 @@
+/* 王林 · Wang Lin — swaync (GTK4). swaync loads /etc/xdg/swaync/style.css
+   first, then this file: we only override its variables and add accents,
+   so swaync updates keep working. Colours: colors.css. */
+@import "colors.css";
+
+:root {
+  --cc-bg: alpha(@base, 0.88);
+  --noti-border-color: alpha(@lavender, 0.22);
+  --noti-bg: 26, 18, 38;
+  --noti-bg-alpha: 0.92;
+  --noti-bg-darker: @mantle;
+  --noti-bg-hover: @deep;
+  --noti-bg-focus: alpha(@deep, 0.7);
+  --noti-close-bg: alpha(@lavender, 0.12);
+  --noti-close-bg-hover: alpha(@lavender, 0.28);
+  --text-color: @text;
+  --text-color-disabled: @muted;
+  --bg-selected: @purple;
+  --notification-icon-size: 48px;
+  --border-radius: 12px;
+  --notification-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+  --font-size-body: 12px;
+  --font-size-summary: 13px;
+}
+
+* { font-family: "GoogleSansCode Nerd Font Propo", "Noto Sans CJK SC", sans-serif; }
+
+.notification-row .notification-background .notification {
+  border-left: 3px solid @lavender;
+}
+.notification-row .notification-background .notification.low { border-left-color: @overlay; }
+.notification-row .notification-background .notification.critical {
+  border-left-color: @red;
+  border-color: alpha(@red, 0.5);
+}
+
+.summary { color: @text; font-weight: 600; }
+.body    { color: @silver; }
+.time    { color: @muted; }
+
+/* OSD (volume/brightness) progress bar */
+progressbar trough  { background: @overlay; border-radius: 4px; min-height: 5px; }
+progressbar progress { background: @lavender; border-radius: 4px; min-height: 5px; }
+
+.notification-action {
+  color: @text;
+  background: alpha(@deep, 0.8);
+  border: 1px solid alpha(@lavender, 0.18);
+}
+.notification-action:hover { background: @purple; }
+
+.control-center {
+  background: var(--cc-bg);
+  border: 1px solid alpha(@lavender, 0.22);
+  border-radius: 14px;
+}
+
+.widget-title > label { color: @text; font-size: 15px; font-weight: 600; }
+.widget-title > button {
+  color: @lavender;
+  background: @surface;
+  border: 1px solid alpha(@lavender, 0.25);
+  border-radius: 8px;
+}
+.widget-title > button:hover { background: @purple; color: @text; }
+
+.widget-dnd > label { color: @silver; }
+.widget-dnd > switch { background: @overlay; border-radius: 12px; }
+.widget-dnd > switch:checked { background: @purple; }
+.widget-dnd > switch slider { background: @text; border-radius: 12px; }
+
+.widget-mpris .widget-mpris-player {
+  background: alpha(@deep, 0.8);
+  border: 1px solid alpha(@lavender, 0.18);
+  border-radius: 12px;
+}
+.widget-mpris .widget-mpris-title { color: @text; font-weight: 600; }
+.widget-mpris .widget-mpris-subtitle { color: @muted; }
+
+.control-center-list-placeholder { color: @muted; }

@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# Emoji picker (rofi) → clipboard. HyDE: SUPER+comma
+source "$(dirname "$(readlink -f "$0")")/lib.sh"
+pkill -x rofi && exit 0
+list="${XDG_CACHE_HOME:-$HOME/.cache}/wanglin-rice/emoji.txt"
+if [[ ! -s $list ]]; then
+    mkdir -p "${list%/*}"
+    python - >"$list" <<'PY'
+import unicodedata
+ranges = [(0x1F300, 0x1FAFF), (0x2600, 0x27BF), (0x1F1E6, 0x1F1FF)]
+for lo, hi in ranges:
+    for cp in range(lo, hi + 1):
+        name = unicodedata.name(chr(cp), '')
+        if name: print(f'{chr(cp)}  {name.lower()}')
+PY
+fi
+sel=$(rofi -dmenu -i -p "󰞅  emoji" <"$list") || exit 0
+e=${sel%%  *}
+[[ -n $e ]] && printf '%s' "$e" | wl-copy && wl_notify "Copied $e" "${sel#*  }"

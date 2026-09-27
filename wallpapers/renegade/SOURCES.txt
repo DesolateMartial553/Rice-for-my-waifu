@@ -1,0 +1,8 @@
+Renegade Immortal (仙逆 / Xian Ni) wallpapers, downloaded from wallhaven.cc at install time,
+cropped to 1920x1080 and recoloured to the rice palette (#0B0712 → #6E40A1 → #F2ECFA).
+Artwork belongs to its original creators; personal desktop use only.
+1-lightning.png    https://wallhaven.cc/w/21ee1m
+2-doorway.png      https://wallhaven.cc/w/d8gg3j
+3-sovereign.png    https://wallhaven.cc/w/rq22q1
+4-calligraphy.png  https://wallhaven.cc/w/jew57q
+Installed automatically by install.sh (tools/fetch-wallpapers.sh); browse them with SUPER+SHIFT+W.

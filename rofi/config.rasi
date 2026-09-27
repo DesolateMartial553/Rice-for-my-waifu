@@ -1,0 +1,18 @@
+/* 王林 · Wang Lin — rofi 2.x */
+configuration {
+    modi: "drun,run,window";
+    show-icons: true;
+    icon-theme: "WangLin-rofi";
+    terminal: "kitty";
+    drun-display-format: "{name}";
+    display-drun: "  apps";
+    display-run: "  run";
+    display-window: "  windows";
+    matching: "fuzzy";
+    sort: true;
+    sorting-method: "fzf";
+    hover-select: true;
+    me-select-entry: "";
+    me-accept-entry: "MousePrimary";
+}
+@theme "wanglin"

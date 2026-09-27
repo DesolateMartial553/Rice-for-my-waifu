@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Text for hyprlock labels. Falls back to Latin when no CJK font exists.
+cjk() { fc-list :lang=zh family 2>/dev/null | grep -q .; }
+case "$1" in
+    motto)
+        if cjk; then echo "我以凡躯踏仙路  ·  王林"
+        else echo "A mortal body treading the immortal path"; fi ;;
+    status)
+        out="$(printf '\uf007')  $USER"
+        for b in /sys/class/power_supply/BAT*; do
+            [[ -r $b/capacity ]] || continue
+            icon="󰁹"; [[ $(cat "$b/status") == Charging ]] && icon="󰂄"
+            out+="    $icon $(cat "$b/capacity")%"; break
+        done
+        layout=$(hyprctl devices -j 2>/dev/null | jq -r '[.keyboards[] | select(.main)][0].active_keymap // empty')
+        [[ -n $layout ]] && out+="    󰌌 $layout"
+        echo "$out" ;;
+esac

@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+# Personal notes about this machine / setup sessions
+HANDOVER.md
+REFERENCE.md
+# Third-party artwork: downloaded at install time by tools/fetch-wallpapers.sh
+wallpapers/renegade/*.png

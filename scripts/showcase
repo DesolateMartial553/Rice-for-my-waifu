@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+source "$(dirname "$(readlink -f "$0")")/lib.sh"
+hyprctl dispatch 'hl.dsp.focus({ workspace = 5 })' >/dev/null
+clients=$(hyprctl clients -j)
+if ! jq -e '.[] | select(.class == "wanglin-fetch")' <<<"$clients" >/dev/null; then
+    "$WL_SHARE/scripts/run" kitty --class wanglin-fetch --title 'Wang Lin · System' -o font_size=8 -o window_padding_width=10 "$WL_SHARE/scripts/showcase-terminal" &
+fi
+if ! jq -e '.[] | select(.class == "wanglin-gallery")' <<<"$clients" >/dev/null; then
+    "$WL_SHARE/scripts/run" python "$WL_SHARE/desktop/gallery.py" &
+fi
+wait

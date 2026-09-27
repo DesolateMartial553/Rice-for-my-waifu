@@ -1,0 +1,15 @@
+[Appearance]
+color_scheme_path=@HOME@/.config/qt6ct/colors/WangLin.conf
+custom_palette=true
+icon_theme=Tela-circle-purple-dark
+standard_dialogs=default
+style=kvantum
+
+[Fonts]
+fixed="GoogleSansCode Nerd Font Mono,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1"
+general="GoogleSansCode Nerd Font Propo,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1"
+
+[Interface]
+activate_item_on_single_click=1
+dialog_buttons_have_icons=1
+menus_have_icons=true

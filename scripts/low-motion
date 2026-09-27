@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Toggle low-motion mode: no animations, blur, shadows or wallpaper fades.
+source "$(dirname "$(readlink -f "$0")")/lib.sh"
+flag="$WL_STATE/low-motion"
+if [[ -e "$flag" ]]; then rm -f "$flag"; msg="off — animations restored"
+else touch "$flag"; msg="on — animations, blur and shadows disabled"; fi
+hyprctl reload >/dev/null
+wl_notify "Low-motion mode" "$msg"

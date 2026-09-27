@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Clipboard history (cliphist) in rofi. Enter = copy, Alt+Delete = wipe all.
+pkill -x rofi && exit 0
+sel=$(cliphist list | rofi -dmenu -p "󰅍  clipboard" -display-columns 2 \
+      -kb-custom-1 "Alt+Delete" -mesg "Enter: copy   Alt+Del: clear history")
+rc=$?
+if [[ $rc -eq 10 ]]; then cliphist wipe; exit 0; fi
+[[ -n "$sel" ]] && printf '%s' "$sel" | cliphist decode | wl-copy

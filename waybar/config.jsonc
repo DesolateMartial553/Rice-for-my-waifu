@@ -1,0 +1,230 @@
+// Original layout at 120% of its previous rendered size.
+{
+  "layer": "top",
+  "position": "top",
+  "height": 36,
+  "margin-top": 0,
+  "margin-left": 0,
+  "margin-right": 0,
+  "spacing": 2,
+  "reload_style_on_change": true,
+  "modules-left": [
+    "custom/sigil",
+    "hyprland/workspaces"
+  ],
+  "modules-center": [
+    "custom/title"
+  ],
+  "modules-right": [
+    "mpris",
+    "custom/previous",
+    "custom/play",
+    "custom/next",
+    "wireplumber",
+    "idle_inhibitor",
+    "battery",
+    "network",
+    "clock",
+    "custom/power"
+  ],
+  "custom/sigil": {
+    "format": "",
+    "tooltip-format": "Apps · Right-click: keybinds",
+    "on-click": "~/.local/share/wanglin-rice/scripts/popup launcher",
+    "on-click-right": "~/.local/share/wanglin-rice/scripts/popup keybinds"
+  },
+  "hyprland/workspaces": {
+    "format": "{name}",
+    "format-icons": {
+      "active": "",
+      "default": "",
+      "empty": "",
+      "special": ""
+    },
+    "persistent-workspaces": {
+      "*": 5
+    },
+    "on-scroll-up": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e-1\" })'",
+    "on-scroll-down": "hyprctl dispatch 'hl.dsp.focus({ workspace = \"e+1\" })'",
+    "on-click": "activate"
+  },
+  "hyprland/window": {
+    "format": "{title}",
+    "max-length": 34,
+    "separate-outputs": true,
+    "rewrite": {
+      "": ""
+    }
+  },
+  "custom/title": {
+    "exec": "~/.config/waybar/scripts/title",
+    "return-type": "json",
+    "interval": "once",
+    "tooltip": true
+  },
+  "mpris": {
+    "format": "󰝚 {dynamic}",
+    "format-paused": "󰝚 {dynamic}",
+    "dynamic-order": [
+      "artist",
+      "title"
+    ],
+    "dynamic-len": 20,
+    "status-icons": {
+      "playing": "󰏤",
+      "paused": "󰐊",
+      "stopped": "󰓛"
+    },
+    "tooltip-format": "{player}: {title} — {artist}\nClick: play/pause · Scroll: skip",
+    "on-scroll-up": "playerctl next",
+    "on-scroll-down": "playerctl previous"
+  },
+  "group/system": {
+    "orientation": "horizontal",
+    "modules": [
+      "wireplumber",
+      "backlight",
+      "network",
+      "bluetooth",
+      "battery"
+    ]
+  },
+  "wireplumber": {
+    "format": "{icon} {volume}%",
+    "format-muted": "󰝟 mute",
+    "format-icons": [
+      "󰕿",
+      "󰖀",
+      "󰕾"
+    ],
+    "tooltip-format": "{node_name}\nClick: sound panel · Right-click: mute",
+    "on-click": "~/.local/share/wanglin-rice/scripts/popup sound",
+    "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "scroll-step": 5
+  },
+  "backlight": {
+    "format": "{icon} {percent}%",
+    "format-icons": [
+      "󰃞",
+      "󰃟",
+      "󰃠"
+    ],
+    "on-scroll-up": "brightnessctl -e4 -n2 set 5%+",
+    "on-scroll-down": "brightnessctl -e4 -n2 set 5%-"
+  },
+  "network": {
+    "format-wifi": "󰤨 {essid}",
+    "format-ethernet": "󰈀",
+    "format-disconnected": "󰤮",
+    "format-disabled": "󰤮",
+    "tooltip-format-wifi": "{essid} · {signalStrength}%\n{ipaddr}  ↓{bandwidthDownBytes} ↑{bandwidthUpBytes}",
+    "tooltip-format-ethernet": "{ifname} · {ipaddr}",
+    "tooltip-format-disconnected": "Disconnected",
+    "on-click": "~/.local/share/wanglin-rice/scripts/popup network",
+    "max-length": 13
+  },
+  "bluetooth": {
+    "format": "󰂯",
+    "format-off": "󰂲",
+    "format-disabled": "",
+    "format-no-controller": "",
+    "format-connected": "󰂱 {num_connections}",
+    "tooltip-format": "{controller_alias} · {status}",
+    "tooltip-format-connected": "{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}",
+    "on-click": "~/.local/share/wanglin-rice/scripts/run blueman-manager"
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "󰅶",
+      "deactivated": "󰛊"
+    },
+    "tooltip-format-activated": "Caffeine on: screen stays awake\nClick to turn off",
+    "tooltip-format-deactivated": "Caffeine off\nClick to keep the screen awake",
+    "start-activated": false
+  },
+  "battery": {
+    "states": {
+      "warning": 25,
+      "critical": 12
+    },
+    "format": "{icon} {capacity}%",
+    "format-charging": "󰂄 {capacity}%",
+    "format-plugged": "󰚥 {capacity}%",
+    "format-full": "󰁹 full",
+    "format-icons": [
+      "󰂎",
+      "󰁺",
+      "󰁻",
+      "󰁼",
+      "󰁽",
+      "󰁾",
+      "󰁿",
+      "󰂀",
+      "󰂁",
+      "󰂂",
+      "󰁹"
+    ],
+    "tooltip-format": "{timeTo} · {power:.1f} W\nClick: quick settings",
+    "on-click": "~/.local/share/wanglin-rice/scripts/popup system"
+  },
+  "tray": {
+    "icon-size": 14,
+    "spacing": 8
+  },
+  "custom/notification": {
+    "exec": "swaync-client -swb",
+    "return-type": "json",
+    "format": "{icon}",
+    "format-icons": {
+      "none": "󰂚",
+      "notification": "󱅫",
+      "dnd-none": "󰂛",
+      "dnd-notification": "󰂛",
+      "inhibited-none": "󰂚",
+      "inhibited-notification": "󱅫",
+      "dnd-inhibited-none": "󰂛",
+      "dnd-inhibited-notification": "󰂛"
+    },
+    "tooltip": false,
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
+  },
+  "clock": {
+    "format": "󰥔 {:%H:%M}",
+    "tooltip-format": "{:%A %d %B %Y}\nClick: calendar",
+    "on-click": "~/.local/share/wanglin-rice/scripts/popup calendar",
+    "calendar": {
+      "mode": "month",
+      "weeks-pos": "",
+      "format": {
+        "months": "<span color='#F2ECFA'><b>{}</b></span>",
+        "weekdays": "<span color='#9A8FB0'>{}</span>",
+        "days": "<span color='#C9C4D4'>{}</span>",
+        "today": "<span color='#B88AF5'><b><u>{}</u></b></span>"
+      }
+    }
+  },
+  "custom/power": {
+    "format": "⏻",
+    "tooltip-format": "Power",
+    "on-click": "~/.local/share/wanglin-rice/scripts/popup power"
+  },
+  "custom/previous": {
+    "format": "«",
+    "tooltip-format": "previous",
+    "on-click": "playerctl previous"
+  },
+  "custom/play": {
+    "format": "Ⅱ",
+    "tooltip-format": "play-pause",
+    "on-click": "playerctl play-pause"
+  },
+  "custom/next": {
+    "format": "›",
+    "tooltip-format": "next",
+    "on-click": "playerctl next"
+  }
+}

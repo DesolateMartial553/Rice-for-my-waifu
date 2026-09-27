@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Start awww-daemon (the renamed swww) if needed and set the wallpaper.
+source "$(dirname "$(readlink -f "$0")")/lib.sh"
+img="${1:-$(wl_wallpaper)}"
+[[ -f "$img" ]] || { wl_notify "Wallpaper missing" "$img"; exit 1; }
+img=$(readlink -f "$img")
+echo "$img" > "$WL_STATE/wallpaper.current"
+if ! awww query >/dev/null 2>&1; then
+    setsid -f "$WL_SHARE/scripts/run" awww-daemon >/dev/null 2>&1 </dev/null
+    for _ in $(seq 50); do awww query >/dev/null 2>&1 && break; sleep 0.1; done
+fi
+# Pre-blurred, darkened copy for hyprlock (regenerated when the wallpaper changes).
+lock="$WL_STATE/lock.png"
+if [[ ! -f "$lock" || "$img" -nt "$lock" || "$(cat "$WL_STATE/lock.src" 2>/dev/null)" != "$img" ]]; then
+    magick "$img" -resize 1920x1080^ -gravity center -extent 1920x1080 \
+        -blur 0x14 -modulate 70,95 "$lock" && echo "$img" > "$WL_STATE/lock.src"
+fi
+
+if wl_low_motion; then
+    awww img "$img" --transition-type none
+else
+    awww img "$img" --transition-type fade --transition-duration 1.2 --transition-fps 60
+fi

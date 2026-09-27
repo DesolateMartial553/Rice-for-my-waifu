@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Centre title: Chinese when a CJK font is installed, otherwise romanised,
+# so the bar never shows missing-glyph boxes.
+if fc-list :lang=zh family 2>/dev/null | grep -q .; then
+    text="王林 · 仙逆"; tip="我以凡躯踏仙路 — a mortal body treading the immortal path"
+else
+    text="WANG LIN · RENEGADE IMMORTAL"; tip="A mortal body treading the immortal path"
+fi
+printf '{"text":"%s","tooltip":"%s","class":"title"}\n' "$text" "$tip"

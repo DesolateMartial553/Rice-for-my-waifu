@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# screenshot region|freeze|monitor|screen|edit  → ~/Pictures/Screenshots + clipboard
+source "$(dirname "$(readlink -f "$0")")/lib.sh"
+dir="$(xdg-user-dir PICTURES 2>/dev/null || echo "$HOME/Pictures")/Screenshots"
+mkdir -p "$dir"
+out="$dir/$(date +%Y-%m-%d_%H-%M-%S).png"
+mode="${1:-region}"
+case "$mode" in
+    screen) grim "$out" ;;
+    monitor) grim -o "$(hyprctl monitors -j | jq -r '.[] | select(.focused) | .name')" "$out" ;;
+    region|edit|freeze)
+        # freeze: hyprpicker paints a still frame over the screen while selecting.
+        [[ "$mode" == freeze ]] && { hyprpicker -r -z & frz=$!; sleep 0.2; }
+        geo=$(slurp -d -b '#100b1880' -c '#b88af5ff' -s '#b88af522' -w 2)
+        rc=$?
+        [[ -n ${frz:-} ]] && kill "$frz" 2>/dev/null
+        ((rc == 0)) || exit 0
+        if [[ "$mode" == edit ]]; then
+            grim -g "$geo" - | satty --filename - --output-filename "$out" --copy-command wl-copy --early-exit
+            exit 0
+        fi
+        grim -g "$geo" "$out" ;;
+    *) echo "usage: $0 region|freeze|monitor|screen|edit" >&2; exit 2 ;;
+esac
+[[ -f "$out" ]] || exit 1
+wl-copy < "$out"
+wl_notify -i "$out" "Screenshot saved" "${out/#$HOME/\~} · copied to clipboard"

@@ -1,0 +1,66 @@
+@import "colors.css";
+* {
+    font-family: "GoogleSansCode Nerd Font Propo", "Noto Sans CJK SC", sans-serif;
+    font-size: 13px;
+    min-height: 0;
+    border: none;
+    border-radius: 0;
+}
+window#waybar {
+    background: rgba(16,11,24,.96);
+    color: @silver;
+    border: 1px solid alpha(@lavender,.35);
+    border-radius: 10px;
+}
+.modules-left, .modules-right { padding: 0 5px; }
+tooltip { background: @surface; border: 1px solid @purple; border-radius: 9px; }
+tooltip label { color: @text; padding: 8px; font-size: 12px; }
+#custom-sigil {
+    color: @text;
+    background: linear-gradient(135deg, #7850b0, #3b2559);
+    border-radius: 8px;
+    font-size: 23px;
+    padding: 0 12px;
+    margin: 5px 5px 5px 0;
+}
+#custom-sigil:hover { background: @purple; }
+#workspaces { margin: 5px 0; }
+#workspaces button {
+    color: @muted;
+    min-width: 17px;
+    padding: 0 6px;
+    margin: 0 2px;
+    background: @surface;
+    border-radius: 7px;
+    box-shadow: none;
+    text-shadow: none;
+}
+#workspaces button.active { color: @text; background: @purple; box-shadow: inset 0 -2px @lavender; }
+#workspaces button:hover { color: @text; background: @overlay; }
+#workspaces button.urgent { color: @red; box-shadow: inset 0 -2px @red; }
+#custom-title { color: @silver; font-size: 13px; letter-spacing: 2px; padding: 0 8px; }
+#media { background: alpha(@lavender,.12); border-radius: 8px; margin: 5px 0; padding: 0 5px; border-bottom: 2px solid @lavender; }
+#mpris { color: @lavender; padding: 0 5px; font-size: 12px; }
+#mpris.paused { color: @muted; }
+#custom-previous, #custom-play, #custom-next { color: @lavender; padding: 0 5px; font-size: 16px; }
+#custom-previous:hover, #custom-play:hover, #custom-next:hover { background: alpha(@lavender,.2); border-radius: 5px; }
+#wireplumber, #battery, #network, #clock, #custom-power {
+    margin: 5px 0;
+    padding: 0 10px;
+    border-radius: 8px;
+    border-bottom: 2px solid transparent;
+}
+#wireplumber { color: #e4a2d6; background: rgba(228,162,214,.10); border-bottom-color: #e4a2d6; }
+#wireplumber:hover { background: rgba(228,162,214,.22); }
+#wireplumber.muted { color: @muted; border-bottom-color: @muted; }
+#network { color: @cyan; background: alpha(@cyan,.1); border-bottom-color: @cyan; }
+#network:hover { background: alpha(@cyan,.2); }
+#network.disconnected, #network.disabled { color: @muted; border-bottom-color: @muted; }
+#battery { color: @green; background: alpha(@green,.1); border-bottom-color: @green; }
+#battery.charging { color: @green; background: alpha(@green,.2); }
+#battery.warning:not(.charging) { color: @yellow; border-bottom-color: @yellow; }
+#battery.critical:not(.charging) { color: @red; border-bottom-color: @red; background: alpha(@red,.15); }
+#clock { color: @yellow; background: alpha(@yellow,.1); border-bottom-color: @yellow; font-weight: 600; }
+#clock:hover { background: alpha(@yellow,.2); }
+#custom-power { color: @red; background: alpha(@red,.12); border-bottom-color: @red; font-size: 19px; padding: 0 12px; }
+#custom-power:hover { color: @base; background: @red; }

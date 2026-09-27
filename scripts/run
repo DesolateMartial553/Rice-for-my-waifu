@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Launch an app, through uwsm when the session is uwsm-managed.
+if command -v uwsm >/dev/null 2>&1 && uwsm check is-active >/dev/null 2>&1; then
+    exec uwsm app -- "$@"
+fi
+exec sh -c "$*"

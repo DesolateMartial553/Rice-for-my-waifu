@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# Drop-down bar panels: popup NAME [x] | popup close | popup --daemon
+# NAME: launcher keybinds sound network calendar system power.
+# Sends the request to the resident popups/popup.py over a FIFO (instant),
+# starting it first if it isn't running.
+source "$(dirname "$(readlink -f "$0")")/lib.sh"
+run="${XDG_RUNTIME_DIR:-/tmp}"
+fifo="$run/wanglin-popup.fifo"
+pidf="$run/wanglin-popup.pid"
+
+alive() {
+    local pid
+    [[ -p $fifo && -r $pidf ]] && pid=$(<"$pidf") &&
+        [[ -r /proc/$pid/cmdline ]] && grep -zqF popups/popup.py "/proc/$pid/cmdline"
+}
+start() {
+    setsid python "$WL_SHARE/popups/popup.py" --daemon </dev/null >/dev/null 2>>"$WL_STATE/popup.log" &
+    for _ in {1..60}; do alive && return 0; sleep 0.05; done
+    return 1
+}
+
+case ${1:-} in
+    --daemon) alive || start; exit ;;
+    close)    alive || exit 0; msg=close ;;
+    '')       echo "usage: popup NAME [x] | close" >&2; exit 2 ;;
+    *)        x=${2:-$(hyprctl cursorpos 2>/dev/null | cut -d, -f1)}
+              msg="$1 ${x:-640}"
+              alive || start || exit 1 ;;
+esac
+timeout 1 bash -c 'printf "%s\n" "$1" >"$2"' _ "$msg" "$fifo"

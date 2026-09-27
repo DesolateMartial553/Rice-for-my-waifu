@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Toggle mute for every audio stream of the focused window. HyDE: SUPER+CTRL+M
+source "$(dirname "$(readlink -f "$0")")/lib.sh"
+pid=$(hyprctl activewindow -j | jq -r '.pid // empty'); [[ -n $pid ]] || exit 0
+pids=$(pstree -p "$pid" 2>/dev/null | grep -o '([0-9]\+)' | tr -d '()'; echo "$pid")
+ids=$(pactl -f json list sink-inputs | jq -r --arg p "$(echo $pids)" \
+      '($p|split(" ")) as $ps | .[] | select((.properties["application.process.id"]//"") as $x | $ps|index($x)) | .index')
+[[ -n $ids ]] || { wl_notify "No audio" "$(hyprctl activewindow -j | jq -r .class) isn't playing anything"; exit 0; }
+for id in $ids; do pactl set-sink-input-mute "$id" toggle; done

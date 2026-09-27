@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# rofi launcher. Modes: (none)=apps, run, window
+pkill -x rofi && exit 0
+case "$1" in
+    run)    exec rofi -show run ;;
+    window) exec rofi -show window ;;
+    *)      exec rofi -show drun -run-command "$HOME/.local/share/wanglin-rice/scripts/run {cmd}" ;;
+esac

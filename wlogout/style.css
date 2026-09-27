@@ -1,0 +1,35 @@
+/* 王林 · Wang Lin — wlogout. Colours: colors.css */
+@import "colors.css";
+
+* {
+    font-family: "GoogleSansCode Nerd Font Propo", sans-serif;
+    font-size: 13px;
+    background-image: none;
+    box-shadow: none;
+    transition: all 180ms ease;
+}
+
+window { background-color: alpha(@mantle, 0.72); }
+
+button {
+    color: @silver;
+    background-color: alpha(@surface, 0.9);
+    border: 1px solid alpha(@lavender, 0.18);
+    border-radius: 14px;
+    background-repeat: no-repeat;
+    background-position: center 40%;
+    background-size: 30%;
+}
+button:focus, button:hover {
+    color: @text;
+    background-color: alpha(@deep, 0.95);
+    border-color: @lavender;
+    background-size: 34%;
+}
+#shutdown:hover, #shutdown:focus { border-color: @red; }
+
+#lock     { background-image: image(url("icons/lock.png")); }
+#logout   { background-image: image(url("icons/logout.png")); }
+#suspend  { background-image: image(url("icons/suspend.png")); }
+#reboot   { background-image: image(url("icons/reboot.png")); }
+#shutdown { background-image: image(url("icons/shutdown.png")); }
